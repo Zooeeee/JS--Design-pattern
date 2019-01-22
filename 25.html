@@ -1,0 +1,37 @@
+<!--此处是关于网页里的 js 中 this 的指向-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "div">点击我</div>
+    <script>
+    window.id = "window";
+
+    document.getElementById('div').onclick = function(){
+        //在普通函数内指向该元素本身
+        alert(this.id);
+
+        let callback = function(){
+            //此处为定义一个回调函数
+            //此时打印出来的数值 this 指向 全局的window
+            alert(this.id);
+        }
+        callback();
+
+        let that = this ;
+        let callback2 = function(){
+            //此处为定义第二个回调函数
+            alert(that.id);
+        }
+        callback2();
+
+
+    }
+    </script>
+</body>
+</html>
