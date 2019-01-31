@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>命令模式</title>
+</head>
+
+<body>
+    <button id="execute">面向对象实现命令模式 打开</button>
+    <button id="undo">面向对象实现命令模式 关闭</button>
+    <script>
+        //Tv 有两个方法 一个open 一个close
+        //以下是命令的接收者
+        let Tv = {
+            open: function () {
+                console.log('打开电视机')
+            },
+            close: function () {
+                console.log('关闭电视机')
+            }
+        }
+        //以下是命令的调用者
+        let OpenTvCommand = function (receiver) {
+            this.receiver = receiver;
+        }
+
+        OpenTvCommand.prototype.execute = function () {
+            console.log('exeute');
+            this.receiver.open();
+        }
+
+        OpenTvCommand.prototype.undo = function () {
+            this.receiver.close();
+        }
+
+
+        //以下是命令的发布者
+        let setCommand = function (command) {
+            document.getElementById('execute').onclick = function () {
+                console.log('onclick');
+                command.execute();
+            }
+            document.getElementById('undo').onclick = function () {
+                console.log('onclick');
+                command.undo();
+            }
+        }
+        setCommand(new OpenTvCommand(Tv))
+        
+    </script>
+  
+
+</body>
+
+</html>

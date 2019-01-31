@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <script>
+     let nodes = document.getElementsByTagName('div');
+     //此处无论点击谁都会是5 因为var定义变量会保存
+     //onclick事件异步触发，此时循环已经结束
+     for (var i = 0; i < nodes.length; i++) {
+            nodes[i].onclick = function(){
+                alert('var定义的循环变量'+(i))
+            }   
+     } 
+     //而用let则会返回正确的值
+   /*   for (let i = 0; i < nodes.length; i++) {
+            nodes[i].onclick = function(){
+                alert('let定义的循环变量'+(i))
+            }   
+     }  */
+    </script>
+</body>
+</html>
