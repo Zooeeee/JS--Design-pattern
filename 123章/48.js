@@ -19,8 +19,8 @@ let func = function () {
     console.log(2);
 }
 
-func = func.before(function(){
+func = func.after(function(){
     console.log(1);
-}).after(function(){
+}).before(function(){
     console.log(3);
 })()

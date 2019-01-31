@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>单例模式传统实现</title>
+</head>
+
+<body>
+    <script>
+        //单例模式v2
+        let CreateDiv = function (html) {
+            let div = document.createElement('div');
+            div.innerHTML = html;
+            document.body.appendChild(div);
+        };
+
+        let ProxyCreateDiv = function (html) {
+            let instance;
+            return function (html) {
+                if(!instance){
+                    return instance = new CreateDiv(html);
+                }
+                return instance
+            }
+        }()
+
+        let a = new ProxyCreateDiv('sven1')
+        let b = new ProxyCreateDiv('sven2')
+        let c = new ProxyCreateDiv('sven3')
+
+        console.log(Object.is(a, b));
+    </script>
+</body>
+
+</html>

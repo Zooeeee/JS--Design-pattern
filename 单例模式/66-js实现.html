@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>单例模式js实现</title>
+</head>
+
+<body>
+    <button id="div">点击生成一个div</button>
+    <button id="btn">点击生成一个button</button>
+    <script>
+        let div = document.getElementById('div');
+        div.onclick = function () {
+            console.log(1);
+            singleDiv('aaa')
+        }
+
+        let btn = document.getElementById('btn');
+        btn.onclick = function () {
+            console.log(2);
+            singleBtn('bbb   ')
+        }
+
+        let getSingle = function (func) {
+            let result;
+            return function () {
+                return result || (result = func.apply(this, arguments)) //从左到右返回第一个存在的对象 就是单例
+            }
+        }
+
+        let createDiv = function (html) {
+            let div = document.createElement('div');
+            div.innerHTML = html;
+            document.body.appendChild(div);
+            return div;
+        }
+
+        let createBtn = function (html) {
+            let btn = document.createElement('button');
+            btn.innerHTML = html;
+            document.body.appendChild(btn);
+            return btn;
+        }
+
+        let singleDiv = getSingle(createDiv);
+
+        let singleBtn = getSingle(createBtn);
+
+    </script>
+</body>
+
+</html>
